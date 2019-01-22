@@ -33,7 +33,7 @@ localCitations <- function(M, sep = ";"){
   LCS=H$histData
   M=H$M
   rm(H)
-  AU=strsplit(M$AU,split=";")
+  AU=future_vapply(M$AU, function(x) {strsplit(x,split=";")}, character(1))
   n=lengths(AU)
   
   df=data.frame(AU=unlist(AU),LCS=rep(LCS$LCS,n))
